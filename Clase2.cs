@@ -18,11 +18,19 @@ namespace theorySharp
             int num2 = Convert.ToInt32(Console.ReadLine());
 
 
-            var doubleSum = num1 + num2;
-            var doubleSub = num1 - num2;
-            var doubleMul = num1 * num2;
-            var doubleDiv = (double) num1 / num2;
-
+            double doubleSum = num1 + num2;
+            double doubleSub = num1 - num2;
+            double doubleMul = num1 * num2;
+            double doubleDiv = (double) num1 / num2;
+            
+            /* var test
+             * 
+             * var doubleSum = num1 + num2;
+             * var doubleSub = num1 - num2;
+             * var doubleMul = num1 * num2;
+             * var doubleDiv = (double) num1 / num2;
+            */
+            
             Console.WriteLine($"Sum result: {doubleSum}.");
             Console.WriteLine($"Subtraction result: {doubleSub}.");
             Console.WriteLine($"Multiplication result: {doubleMul}");
