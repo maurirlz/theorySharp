@@ -28,6 +28,18 @@
           </e>
         </e>
       </e>
+      <e p="Ejercicio3" t="IncludeRecursive">
+        <e p="Ejercicio3.csproj" t="IncludeRecursive" />
+        <e p="Program.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Ejercicio3.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
       <e p="Ejercicios" t="Include">
         <e p="Clase 2" t="Include" />
         <e p="Clase 3" t="Include" />
