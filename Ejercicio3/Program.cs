@@ -47,15 +47,15 @@ namespace Ejercicio3
                 select height;
 
             Console.WriteLine("Heights equal to or above the average height in heights: ");
-            PrintAboveAverageValues(aboveAverage);
+            PrintEnumValues(aboveAverage);
 
             Console.WriteLine();
             Console.WriteLine("Heights below to the average height in heights: ");
-            PrintBelowAverageValues(belowAverage);
+            PrintEnumValues(belowAverage);
 
             Console.WriteLine();
             Console.WriteLine($"Heights between the range of 0 and {standardDeviation}");
-            PrintAboveAverageValues(inRangeBetweenDeviation);
+            PrintEnumValues(inRangeBetweenDeviation);
         }
 
         private static decimal[] GetHeights(decimal[] arrayOfHeights)
@@ -112,22 +112,13 @@ namespace Ejercicio3
             return total / arrayOfDeviation.Length;
         }
 
-        private static void PrintAboveAverageValues(IEnumerable<decimal> enumerable)
-        {
-            Console.WriteLine("Heights equal to or above the average height: ");
-            foreach (decimal value in enumerable)
-            {
-                Console.Write($"{value}, ");   
-            }
-        }
-
-        private static void PrintBelowAverageValues(IEnumerable<decimal> enumerable)
+        private static void PrintEnumValues(IEnumerable<decimal> enumerable)
         {
             
-            Console.WriteLine("Heights equal to or above the average height: ");
             foreach (decimal value in enumerable)
             {
-                Console.Write($"{value}, ");   
+                Console.Write($"{value}, ");
+                Console.WriteLine();
             }
         }
     }
