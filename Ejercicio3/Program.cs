@@ -43,7 +43,7 @@ namespace Ejercicio3
 
             var inRangeBetweenDeviation =
                 from height in heights
-                where height > 0 && height <= standardDeviation
+                where Math.Abs(height - average) <= standardDeviation
                 select height;
 
             Console.WriteLine("Heights equal to or above the average height in heights: ");
