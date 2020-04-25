@@ -4,6 +4,22 @@
     <e p="$USER_HOME$/.Rider2019.3/system/extResources" t="IncludeRecursive" />
     <e p="$USER_HOME$/.Rider2019.3/system/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_theorySharp.-423436409.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="DadosConApuesta" t="IncludeRecursive">
+        <e p="DadosConApuesta.csproj" t="IncludeRecursive" />
+        <e p="Dice.cs" t="Include" />
+        <e p="Gamble.cs" t="Include" />
+        <e p="GameMode.cs" t="Include" />
+        <e p="Player.cs" t="Include" />
+        <e p="Program.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="DadosConApuesta.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
       <e p="Ejercicio1" t="IncludeRecursive">
         <e p="Ejercicio1.csproj" t="IncludeRecursive" />
         <e p="Program.cs" t="Include" />
@@ -40,9 +56,36 @@
           </e>
         </e>
       </e>
+      <e p="Ejercicio4" t="IncludeRecursive">
+        <e p="Ejercicio4.csproj" t="IncludeRecursive" />
+        <e p="Program.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Ejercicio4.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="EjercicioClase" t="IncludeRecursive">
+        <e p="EjercicioClase.csproj" t="IncludeRecursive" />
+        <e p="Program.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="EjercicioClase.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
       <e p="Ejercicios" t="Include">
         <e p="Clase 2" t="Include" />
         <e p="Clase 3" t="Include" />
+        <e p="Clase 4" t="Include" />
+        <e p="Clase 5" t="Include" />
+        <e p="Clase 6 " t="Include" />
       </e>
       <e p="packages" t="ExcludeRecursive" />
       <e p="theorySharp.sln" t="IncludeFlat" />
