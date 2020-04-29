@@ -4,17 +4,18 @@ namespace DadosConApuesta
 {
     public class Dice
     {
-        private static int faces;
+        private int faces { get; }
+        private int result { get; set; }
 
-        public Dado(int faces)
+        public Dice(int faces)
         {
             this.faces = faces;
         }
 
         public int throwDice()
         {
-            
-            return new Random().Next(numbers) + 1;
+            this.result = new Random().Next(this.faces);
+            return result;
         }
     }
 }

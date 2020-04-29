@@ -2,59 +2,50 @@ using System;
 using System.Text;
 using DadosConApuesta;
 
-namespace DadosConApuesta
-{
+namespace DadosConApuesta {
+
     public class Player
     {
-        private decimal balance = 100;
-        private string name = "";
+        private decimal _balance;
+        private readonly string _name;
 
-        public Player(string name)
+        public string Name => _name;
+
+        public Player(string _name)
         {
-            this.name = name;
+             this._name = _name;
+             _balance = 100;
         }
 
-        public bool addBalance(decimal amount)
+        public bool AddBalance(decimal amount)
         {
             if (amount > 0)
             {
 
-                this.balance += amount;
+                 _balance += amount;
                 return true;
             }
 
             return false;
         }
 
-        public bool substractBalance(decimal amount)
+        public bool SubtractBalance(decimal amount)
         {
 
-            if (amount > 0 && this.balance >= amount)
+            if (HasEnoughCurrencyToPlay() && _balance >= amount)
             {
 
-                this.balance -= amount;
+                _balance -= amount;
                 return true;
             }
 
             return false;
         }
-        
-        public decimal getBalance()
+
+        public bool IsSamePlayer(Player p)
         {
 
-            return balance;
-        }
-
-        public string getName()
-        {
-
-            return name;
-        }
-
-        public bool isSamePlayer(Player p)
-        {
-
-            if (this.Equals(p))
+            if (Equals(p))
             {
 
                 return true;
@@ -63,29 +54,31 @@ namespace DadosConApuesta
             return false;
         }
 
-        protected bool Equals(Player other)
+        public bool HasEnoughCurrencyToPlay() => _balance > 0;
+
+        private bool Equals(Player other)
         {
-            return balance == other.balance && name == other.name;
+            return _balance == other._balance && _name == other._name;
         }
 
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            if (obj.GetType() != GetType()) return false;
             return Equals((Player) obj);
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(balance, name);
+            return HashCode.Combine(_balance, _name);
         }
 
         public override string ToString()
         {
-           StringBuilder sb = new StringBuilder("Player's name: ");
-           sb.Append(this.name).Append("\n");
-           sb.Append("Player's balance: ").Append(this.balance).Append("\n");
+           StringBuilder sb = new StringBuilder("\n\tPlayer's name: ");
+           sb.Append(_name).Append("\n");
+           sb.Append("\tPlayer's balance: ").Append( _balance);
 
            return sb.ToString();
         }
