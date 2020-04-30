@@ -11,9 +11,9 @@ namespace DadosConApuesta {
 
         public string Name => _name;
 
-        public Player(string _name)
+        public Player(string name)
         {
-             this._name = _name;
+             _name = name;
              _balance = 100;
         }
 

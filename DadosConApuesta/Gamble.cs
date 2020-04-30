@@ -1,9 +1,11 @@
 using System;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace DadosConApuesta
 {
-    public class Gamble
+    public class Gamble : IComparable<Gamble>
     {
         private static long _gambleId;
         private decimal _initialAmount;
@@ -17,7 +19,7 @@ namespace DadosConApuesta
             _player = player;
         }
 
-        public bool MakeBet(Player player, GameMode mode, decimal amount)
+        public void MakeBet(Player player, GameMode mode, decimal amount)
         {
             if (player.HasEnoughCurrencyToPlay() && amount > 0)
             {
@@ -56,7 +58,6 @@ namespace DadosConApuesta
             }
 
             _gambleId++;
-            return true;
         }
 
         private static void ThrowInvalidAmuntOfBalanceException(Player player)
@@ -69,6 +70,13 @@ namespace DadosConApuesta
         {
 
             return ToString();
+        }
+
+        public int CompareTo(Gamble other)
+        {
+            return _initialAmount > other._initialAmount ? 1
+                : _initialAmount < other._initialAmount ? -1
+                : 0;
         }
 
         private static long GetGambleId => _gambleId;
@@ -87,6 +95,27 @@ namespace DadosConApuesta
             }  
             
             return gameMode == GameMode.Risky ? "Risky" : "Desperate";
+        }
+
+        public GameMode GetGameMode(String s)
+        {
+
+            if (String.Compare(s, "Conservative", StringComparison.OrdinalIgnoreCase) > 0)
+            {
+
+                return GameMode.Conservative;
+            } else if (String.Compare(s, "Risky", StringComparison.OrdinalIgnoreCase) > 0)
+            {
+                return GameMode.Risky;
+            }
+            else if (String.Compare(s, "Desperate", StringComparison.OrdinalIgnoreCase) > 0)
+            {
+                return GameMode.Desperate;
+            }
+            else
+            {
+                throw new InvalidDataException("Provided mode is invalid.");
+            }
         }
         
         public override string ToString()

@@ -2,20 +2,32 @@ using System;
 
 namespace DadosConApuesta
 {
-    public class Dice
+    public class Dice : IComparable<Dice>
     {
-        private int faces { get; }
-        private int result { get; set; }
 
+        private readonly int _faces;
+        private int _result;
+        
         public Dice(int faces)
         {
-            this.faces = faces;
+            _faces = faces;
         }
 
         public int throwDice()
         {
-            this.result = new Random().Next(this.faces);
-            return result;
+            _result = new Random().Next(_faces);
+            return _result;
         }
+
+        public int CompareTo(Dice other)
+        {
+            return _result < other._result ? -1
+                :  _result > other._result ? 1
+                : 0;
+        }
+
+        public int GetFaces => _faces;
+
+        public int GetResult => _result;
     }
 }
