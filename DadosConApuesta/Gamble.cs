@@ -21,7 +21,7 @@ namespace DadosConApuesta
 
         public void MakeBet(Player player, GameMode mode, decimal amount)
         {
-            if (player.HasEnoughCurrencyToPlay() && amount > 0)
+            if (player.HasEnoughCurrencyToPlay() && amount > 0 && player.GetPlayerBalance >= amount)
             {
                 switch (mode)
                 {
@@ -46,7 +46,7 @@ namespace DadosConApuesta
                         _gameMode = GameMode.Desperate;
                         _initialAmount = amount;
                         _totalamountToWin = amount * 15;
-                        _totalamountToLose = -amount * -4;
+                        _totalamountToLose = -amount * 4;
                         
                         break;
                 }
@@ -62,8 +62,7 @@ namespace DadosConApuesta
 
         private static void ThrowInvalidAmuntOfBalanceException(Player player)
         {
-            Console.WriteLine($"Player {player.Name} doesn't meet the required balance to play the game. \n\tException at Gamble Class.");
-            throw new InvalidAmountOfBalanceException("Balance quantity is 0 or less.");
+            throw new InvalidAmountOfBalanceException($"Player {player.Name} doesn't meet the required balance to play the game. \n\tException at Gamble Class.");
         }
 
         public string GetGambleInfo()
@@ -94,21 +93,21 @@ namespace DadosConApuesta
                 return "Conservative";
             }  
             
-            return gameMode == GameMode.Risky ? "Risky" : "Desperate";
+            return gameMode == GameMode.Risky ? "Risky" : gameMode == GameMode.Desperate ? "Desperate" : null;
         }
 
         public GameMode GetGameMode(String s)
         {
 
-            if (String.Compare(s, "Conservative", StringComparison.OrdinalIgnoreCase) > 0)
+            if (String.Compare(s, "Conservative", StringComparison.OrdinalIgnoreCase) == 0)
             {
 
                 return GameMode.Conservative;
-            } else if (String.Compare(s, "Risky", StringComparison.OrdinalIgnoreCase) > 0)
+            } else if (String.Compare(s, "Risky", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return GameMode.Risky;
             }
-            else if (String.Compare(s, "Desperate", StringComparison.OrdinalIgnoreCase) > 0)
+            else if (String.Compare(s, "Desperate", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return GameMode.Desperate;
             }

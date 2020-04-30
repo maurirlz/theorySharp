@@ -1,4 +1,6 @@
 ﻿using System;
+using Microsoft.VisualBasic.CompilerServices;
+using static System.Console;
 
 namespace DadosConApuesta
 {
@@ -21,7 +23,7 @@ namespace DadosConApuesta
         El jugador 1 pierde, se queda con $90, el jugador 2 gana, se queda con $200 (100 + 5*20)
             El pozo acumula 10000 + 10 -100 = 9910
         */
-        
+
         static void Main(string[] args)
         {
             Player player = new Player("Jugador 1");
@@ -29,9 +31,37 @@ namespace DadosConApuesta
             
             Gamble gamble = new Gamble(player);
 
-            gamble.MakeBet(player, GameMode.Risky, 100);
-            BalanceCheck(player);
-            GetGambleInfo(gamble);
+            
+            Game game = new Game(player, secondPlayer, 6);
+            NewBet(game, player);
+        }
+
+        private static void NewBet(Game g, Player p)
+        {
+            WriteLine($"Hey {p.Name} please input your desired amount to bet on: ");
+            decimal amount = Decimal.Parse(ReadLine());
+            WriteLine($"{p.Name}, please enter the desired number to bet on (from 1 to {g.GetDiceFaces})");
+            int choice = Int32.Parse(ReadLine());
+            WriteLine($"{p.Name}, please enter the desired gamemode: (-1/2 Conservative, -2/5 Risky, -4/15 Desperate");
+            string mode = ReadLine();
+
+            Gamble newGamble = g.InitializeBet(mode, amount, p, choice);
+
+            if (newGamble != null)
+            {
+                WriteLine("Bet sucessfully added.");
+                GetGambleInfo(newGamble);
+            }
+            else
+            {
+                
+                WriteLine("Couldn't process new bet, something bad happened.");
+            }
+        }
+
+        public static bool GameIsOverCheck(Game g)
+        {
+            return g.IsGameFinished();
         }
 
         public static bool BalanceCheck(Player p1, Player p2)
@@ -49,7 +79,7 @@ namespace DadosConApuesta
         private static void GetGambleInfo(Gamble gamble)
         {
 
-            Console.WriteLine(gamble.GetGambleInfo());
+            WriteLine(gamble.GetGambleInfo());
         }
     }
 }

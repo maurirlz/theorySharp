@@ -56,6 +56,9 @@ namespace DadosConApuesta {
 
         public bool HasEnoughCurrencyToPlay() => _balance > 0;
 
+        public decimal GetPlayerBalance => _balance;
+        
+
         private bool Equals(Player other)
         {
             return _balance == other._balance && _name == other._name;

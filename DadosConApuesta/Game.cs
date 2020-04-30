@@ -2,22 +2,26 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq.Expressions;
 
 namespace DadosConApuesta
 {
     public class Game
     {
-        private readonly HashSet<Player> _players;
-        private readonly HashSet<Dice> _dices;
+        private readonly List<Player> _players;
+        private readonly List<Dice> _dices;
         private readonly List<Gamble> _bets;
         private readonly Dictionary<Dice, int> _results;
+        private readonly Dictionary<Player, int> _choices;
         private static decimal _jackpot = 10000;
+        private static int _dicerules;
 
         public Game(Player p1, Player p2, int dicesFaces)
         {
             if (!p1.IsSamePlayer(p2))
             {
 
+                _players = new List<Player>();
                 _players.Add(p1);
                 _players.Add(p2);
             }
@@ -26,15 +30,17 @@ namespace DadosConApuesta
                 throw new InvalidDataException("Players are the same, cannot start the game.");
             }
 
-            _dices = new HashSet<Dice>();
+            _dices = new List<Dice>();
             Dice player1Dice = new Dice(dicesFaces);
             Dice player2Dice = new Dice(dicesFaces);
 
+            _dicerules = dicesFaces;
             _dices.Add(player1Dice);
             _dices.Add(player2Dice);
 
             _results = new Dictionary<Dice, int>();
             _bets = new List<Gamble>();
+            _choices = new Dictionary<Player, int>();
         }
 
         public void StartGame()
@@ -44,7 +50,7 @@ namespace DadosConApuesta
 
         public bool IsGameFinished()
         {
-            if (GetJackpot() <= 0)
+            if (_jackpot <= 0)
             {
                 Console.WriteLine("Jackpot's value is 0, game is finished.");
                 return true;
@@ -62,16 +68,19 @@ namespace DadosConApuesta
             return false;
         }
         
-        public bool InitializeBets(String mode, decimal amount)
+        public Gamble InitializeBet(String mode, decimal amount, Player p, int choice)
         {
-            foreach (Player player in _players)
+            Player foundPlayer = _players.Find(desiredPlayer => p.Equals(desiredPlayer));
+
+            if (foundPlayer != null)
             {
-                Gamble gamble = new Gamble(player);
-                gamble.MakeBet(player, gamble.GetGameMode(mode), amount);
-                _bets.Add(gamble);
+                Gamble gamble = new Gamble(p);
+                gamble.MakeBet(p, gamble.GetGameMode(mode), amount);
+                _choices.Add(p, choice);
+                return gamble;
             }
 
-            return true;
+            return null;
         }
 
         private void ThrowDices()
@@ -85,8 +94,12 @@ namespace DadosConApuesta
 
         private decimal GetJackpot() => _jackpot;
         
-        public HashSet<Player> GetListOfPlayers => new HashSet<Player>(_players);
+        public List<Player> GetListOfPlayers => new List<Player>(_players);
         
         public List<Gamble> GetListOfBets => new List<Gamble>(_bets);
+        
+        public Dictionary<Player, int> GetListOfChoices => new Dictionary<Player, int>(_choices);
+
+        public int GetDiceFaces => _dicerules;
     }
 }
