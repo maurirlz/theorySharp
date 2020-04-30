@@ -43,9 +43,55 @@ namespace DadosConApuesta
             _choices = new Dictionary<Player, int>();
         }
 
-        public void StartGame()
+        public void StartARound()
         {
             ThrowDices();
+        }
+
+        public void DecideWinners(List<Player> players)
+        {
+            foreach (var result in _results.Values)
+            {
+                foreach (var player in players)
+                {
+                    if (_choices[player] == result)
+                    {
+                        player.IsWinner = true;
+                    }
+                }
+            }
+        }
+
+        public void PayWinnersAndChargeLosers()
+        {
+            _players.ForEach(player =>
+            {
+                Gamble playersBet = _bets.Find(betPlayer => player.Equals(betPlayer));
+
+                if (player.IsWinner)
+                {
+                    player.AddBalance(playersBet.GetAmountToWin);
+                }
+                else
+                {
+                    player.SubtractBalance(playersBet.GetAmountToLose);
+                }
+            });
+        }
+
+        public Gamble InitializeBet(String mode, decimal amount, Player p, int choice)
+        {
+            Player foundPlayer = _players.Find(desiredPlayer => p.Equals(desiredPlayer));
+
+            if (foundPlayer != null)
+            {
+                Gamble gamble = new Gamble(p);
+                gamble.MakeBet(p, gamble.GetGameMode(mode), amount);
+                _choices.Add(p, choice);
+                return gamble;
+            }
+
+            return null;
         }
 
         public bool IsGameFinished()
@@ -66,21 +112,6 @@ namespace DadosConApuesta
             }
             
             return false;
-        }
-        
-        public Gamble InitializeBet(String mode, decimal amount, Player p, int choice)
-        {
-            Player foundPlayer = _players.Find(desiredPlayer => p.Equals(desiredPlayer));
-
-            if (foundPlayer != null)
-            {
-                Gamble gamble = new Gamble(p);
-                gamble.MakeBet(p, gamble.GetGameMode(mode), amount);
-                _choices.Add(p, choice);
-                return gamble;
-            }
-
-            return null;
         }
 
         private void ThrowDices()

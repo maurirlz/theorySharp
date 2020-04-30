@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualBasic.CompilerServices;
 using static System.Console;
 
@@ -28,12 +29,27 @@ namespace DadosConApuesta
         {
             Player player = new Player("Jugador 1");
             Player secondPlayer = new Player("Jugador 2");
+            List<Player> playerList = new List<Player>();
             
-            Gamble gamble = new Gamble(player);
-
+            
+            playerList.Add(player);
+            playerList.Add(secondPlayer);
             
             Game game = new Game(player, secondPlayer, 6);
-            NewBet(game, player);
+
+            while (!GameIsOverCheck(game))
+            {
+                game.StartARound();
+                
+                playerList.ForEach(player =>
+                {
+                    NewBet(game, player);
+                    BalanceCheck(player);
+                });
+                
+                game.DecideWinners(playerList);
+                game.PayWinnersAndChargeLosers();
+            }
         }
 
         private static void NewBet(Game g, Player p)

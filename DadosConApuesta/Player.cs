@@ -8,6 +8,7 @@ namespace DadosConApuesta {
     {
         private decimal _balance;
         private readonly string _name;
+        public bool IsWinner { get; set; }
 
         public string Name => _name;
 
@@ -17,29 +18,23 @@ namespace DadosConApuesta {
              _balance = 100;
         }
 
-        public bool AddBalance(decimal amount)
+        public void AddBalance(decimal amount)
         {
-            if (amount > 0)
+            if (amount > 0 && IsWinner)
             {
 
                  _balance += amount;
-                return true;
             }
-
-            return false;
         }
 
-        public bool SubtractBalance(decimal amount)
+        public void SubtractBalance(decimal amount)
         {
 
-            if (HasEnoughCurrencyToPlay() && _balance >= amount)
+            if (HasEnoughCurrencyToPlay() && _balance >= amount && !IsWinner)
             {
 
                 _balance -= amount;
-                return true;
             }
-
-            return false;
         }
 
         public bool IsSamePlayer(Player p)
@@ -57,7 +52,6 @@ namespace DadosConApuesta {
         public bool HasEnoughCurrencyToPlay() => _balance > 0;
 
         public decimal GetPlayerBalance => _balance;
-        
 
         private bool Equals(Player other)
         {

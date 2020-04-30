@@ -21,7 +21,12 @@ namespace DadosConApuesta
 
         public void MakeBet(Player player, GameMode mode, decimal amount)
         {
-            if (player.HasEnoughCurrencyToPlay() && amount > 0 && player.GetPlayerBalance >= amount)
+            bool conditionInOrderToBet =
+                player.HasEnoughCurrencyToPlay() 
+                && amount > 0 
+                && player.GetPlayerBalance >= amount;
+            
+            if (conditionInOrderToBet)
             {
                 switch (mode)
                 {
