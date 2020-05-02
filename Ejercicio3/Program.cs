@@ -15,7 +15,7 @@ namespace Ejercicio3
             
             /*
              * Objetivo: Comprender el uso basico de estructuras repetitivas.
-             * Ejercicio:
+             * ejercicioLambda:
              *     - Calcular la media y desviacion estandar de un conjunto de 10 personas.
              *     - Tome por teclado la altura en cm de cada persona y carguela a un arreglo.
              *     - Presente los resultados obtenidos.

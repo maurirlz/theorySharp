@@ -89,6 +89,31 @@
         <e p="Clase 5" t="Include" />
         <e p="Clase 6 " t="Include" />
       </e>
+      <e p="SimulacionParcial" t="Include" />
+      <e p="ejercicioInsertionSort" t="IncludeRecursive">
+        <e p="Program.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="ejercicioInsertionSort.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="ejercicioInsertionSort.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="ejercicioLambda" t="IncludeRecursive">
+        <e p="Program.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="ejercicioLambda.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="ejercicioLambda.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
       <e p="packages" t="ExcludeRecursive" />
       <e p="theorySharp.sln" t="IncludeFlat" />
     </e>

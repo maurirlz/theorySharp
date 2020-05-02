@@ -9,7 +9,7 @@ namespace EjercicioClase
         static void Main(string[] args)
         {
             /*
-             * Pasaje de parametros - Ejercicio
+             * Pasaje de parametros - ejercicioLambda
              * Implementar una funcion Moda, que reciba
              * como valores una cantidad indeterminada de enteros
              * y devuelva la Moda (estadistica), el valor minimo y el valor maximo

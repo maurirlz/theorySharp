@@ -9,7 +9,7 @@ namespace theorySharp.Clase3
         {
 
             /* Objetivo: Comprender la aplicación de las estructuras de decisión en C#.
-                * Ejercicio:
+                * ejercicioLambda:
                     * Cree de una aplicación de consola.
                     * Solicite el ingreso de un texto y controle que no esté vacío.
                     * Despliegue un menú que muestre 3 posibilidades (Texto en mayúscula, Texto en minúscula y Texto Original).
