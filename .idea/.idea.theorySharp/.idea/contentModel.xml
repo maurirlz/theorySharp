@@ -70,6 +70,18 @@
           </e>
         </e>
       </e>
+      <e p="Ejercicio7" t="IncludeRecursive">
+        <e p="Ejercicio7.csproj" t="IncludeRecursive" />
+        <e p="Program.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Ejercicio7.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
       <e p="EjercicioClase" t="IncludeRecursive">
         <e p="EjercicioClase.csproj" t="IncludeRecursive" />
         <e p="Program.cs" t="Include" />
@@ -87,7 +99,9 @@
         <e p="Clase 3" t="Include" />
         <e p="Clase 4" t="Include" />
         <e p="Clase 5" t="Include" />
-        <e p="Clase 6 " t="Include" />
+        <e p="Clase 6 " t="Include">
+          <e p="DateTime" t="Include" />
+        </e>
       </e>
       <e p="SimulacionParcial" t="Include" />
       <e p="ejercicioInsertionSort" t="IncludeRecursive">
