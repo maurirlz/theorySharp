@@ -35,7 +35,7 @@ namespace Ejercicio7
             
             if (firstDate > lastDate)
             {
-                throw new ArgumentException("Last date greater than first date.");
+                throw new ArgumentException("Error, first date greater than last day.");
             }
 
             TimeSpan total = GetTimeSpanBetweenTwoDates(firstDate, lastDate);
