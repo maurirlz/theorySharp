@@ -11,9 +11,11 @@ namespace Ejercicio7
             DateTime fecha = new DateTime(2020, 5 , 10);
             DateTime fecha1 = new DateTime(2020, 5, 20);
 
+            int workingDaysToAdd = 12;
+
             WriteLine($"Dias entre {fecha.Date} y {fecha1.Date}: {Math.Abs(GetDaysBetweenTwoDates(fecha, fecha1))}");
             WriteLine($"Dias laborales entre {fecha.Date} y {fecha1.Date}: {GetWorkingDays(fecha, fecha1)}");
-            WriteLine($"{fecha.Date} mas 5 dias laborales: {AddWorkingDays(fecha, 6)}");
+            WriteLine($"{fecha.Date} mas {workingDaysToAdd} dias laborales: {AddWorkingDays(fecha, workingDaysToAdd)}");
         }
 
         private static int GetDaysBetweenTwoDates(DateTime dt1, DateTime dt2)
