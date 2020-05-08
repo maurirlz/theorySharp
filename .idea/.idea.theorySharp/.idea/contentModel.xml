@@ -22,6 +22,18 @@
           </e>
         </e>
       </e>
+      <e p="DateTimeExercise" t="IncludeRecursive">
+        <e p="DateTimeExercise.csproj" t="IncludeRecursive" />
+        <e p="Program.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="DateTimeExercise.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
       <e p="Ejercicio1" t="IncludeRecursive">
         <e p="Ejercicio1.csproj" t="IncludeRecursive" />
         <e p="Program.cs" t="Include" />
@@ -103,6 +115,7 @@
           <e p="DateTime" t="Include" />
         </e>
       </e>
+      <e p="Leaked" t="Include" />
       <e p="SimulacionParcial" t="Include" />
       <e p="ejercicioInsertionSort" t="IncludeRecursive">
         <e p="Program.cs" t="Include" />

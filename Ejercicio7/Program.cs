@@ -93,7 +93,6 @@ namespace Ejercicio7
             {
 
                 DateTime holidayDate = holiday.Date;
-
                 if (firstDate <= holidayDate && holidayDate <= lastDate && !(IsWeekendDay(holidayDate)))
                 {
                     --businessDays;
@@ -122,13 +121,11 @@ namespace Ejercicio7
 
         private static bool IsWeekendDay(DateTime dt)
         {
-
             return dt.DayOfWeek == DayOfWeek.Sunday || dt.DayOfWeek == DayOfWeek.Saturday;
         }
 
         private static TimeSpan GetTimeSpanBetweenTwoDates(DateTime dt1, DateTime dt2)
         {
-
             return dt2 - dt1;
         }
 
