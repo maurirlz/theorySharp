@@ -17,8 +17,7 @@ namespace DateTimeExercise
             Note, por ejemplo, que el 5to dia del año si bien es primo, no se encuentra listado porque cae sábado.
             Como ayuda recuerde que los primeros 10 números primos son: 2 3 5 7 11 13 17 19 23 29 
             */
-            
-        static void Main(string[] args)
+            static void Main(string[] args)
         {
             DateTime dt = new DateTime(2018, 10, 01);
             DateTime dt2 = new DateTime(2019, 09, 10); // son 47 fechas
@@ -39,7 +38,7 @@ namespace DateTimeExercise
                 if (IsPrime(firstDate.DayOfYear) && !IsWeekendDay(firstDate))
                 {
 
-                    sb.Append(firstDate.DayOfYear + ":" + firstDate.ToString("ddMMyy") + "\n");
+                    sb.Append(firstDate.DayOfYear + ":" + firstDate.ToString("ddMMyy") + ", ");
                 }
                 
                 firstDate = firstDate.AddDays(1);
@@ -58,21 +57,19 @@ namespace DateTimeExercise
         {
 
             if (num <= 1) return false; // 1 o numeros negativos no son primos.
-            if (num == 2) return true; // 2 no es primo.
+            if (num == 2) return true; // 2  es primo.
             if (num % 2 == 0) return false; // si es par, no es primo, todos los pares son compuestos.
 
             var boundary = (int) Math.Floor(Math.Sqrt(num)); // Sacamos la raiz cuadrada del numero en cuestion para dar un limite a for
 
             for (int i = 3; i <= boundary; i += 2) // desde i = 3 (ya descartamos 1 y 2), i <= limite establecido, i += 2 para ir recorriendo entre numeros inpares (los unicos q pueden o no ser primos)
             {
-
                 if (num % i == 0) // si el numero es divisible por el numero inpar, en este caso 3, retornar falso, ya que solo puede ser divisible por si mismo.
                 {
 
                     return false;
                 }
             }
-
             return true;
         }
     }
