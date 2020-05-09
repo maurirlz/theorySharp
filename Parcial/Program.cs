@@ -21,8 +21,21 @@ namespace Parcial
             
             UnionDeTiempo unionDeTiempo = new UnionDeTiempo(periodos);
             unionDeTiempo.InterceptaOtroPeriodoDeTiempoCheck();
+            
+            int i = 0;
+            
+            foreach (var periodoDeTiempo in unionDeTiempo.GetNonIntersectedUnion())
+            {
+                
+                Console.WriteLine("Periodos que no se interseccionan: ");
+                Console.WriteLine($"\tPeriodo : {i + 1} "  +
+                                  "\n\t\t" + periodoDeTiempo.Inicio +
+                                  " a " + periodoDeTiempo.Fin);
 
-            Console.WriteLine(unionDeTiempo.GetUnion().ToString("yyMMdd"));
+                i++;
+            }
+            
+             // funciona, actually no me fue tan mal
         }
     }
     
