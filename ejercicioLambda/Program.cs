@@ -7,11 +7,11 @@ namespace Ejercicio
     {
         static void Main(string[] args)
         {
-            int[] array = sortInDescendingAndAbsoluteOrder(-1, 3, 5, 0, -2);
-            printArray(array);
+            int[] array = SortInDescendingAndAbsoluteOrder(-1, 3, 5, 0, -2);
+            PrintArray(array);
         }
 
-        private static int[] sortInDescendingAndAbsoluteOrder(params int[] ints)
+        private static int[] SortInDescendingAndAbsoluteOrder(params int[] ints)
         {
             
             Array.Sort(ints, (a, b) => Math.Abs(a).CompareTo(Math.Abs(b)));
@@ -20,7 +20,7 @@ namespace Ejercicio
             return ints;
         }
 
-        private static void printArray(int[] array)
+        private static void PrintArray(int[] array)
         {
             foreach (int i in array)
             {

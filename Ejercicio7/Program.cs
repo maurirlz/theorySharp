@@ -21,7 +21,6 @@ namespace Ejercicio7
         private static int GetDaysBetweenTwoDates(DateTime dt1, DateTime dt2)
         {
             TimeSpan ts = dt1 - dt2;
-
             
             return ts.Days;
         }

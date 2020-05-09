@@ -10,7 +10,7 @@ namespace DateTimeExercise
             fechas cuya posición en el año sea un número primo y además que correspondan a un día entre lunes y
             viernes.
             Ingrese dichas fechas en orden creciente (cronológicamente) con el formato:
-            diaño:ddMMaa,diaño:ddMMaa,...,diaño:ddMMaa,
+            diaño:ddMMaa,diaño:ddMMaa,...,diaño:ddMMaa,1
             Por ejemplo: Entre las fechas 01/01/2019 y 15/02/2019, el resultado esperado es
             2:020119,3:030119,7:070119,11:110119,17:170119,23:230119,29:290119,31:310119,37:060219,43:120
             219,
@@ -55,7 +55,6 @@ namespace DateTimeExercise
 
         private static bool IsPrime(int num)
         {
-
             if (num <= 1) return false; // 1 o numeros negativos no son primos.
             if (num == 2) return true; // 2  es primo.
             if (num % 2 == 0) return false; // si es par, no es primo, todos los pares son compuestos.
