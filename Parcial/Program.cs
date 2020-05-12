@@ -90,19 +90,19 @@ namespace Parcial
             this.periodosDeTiempo = periodosDeTiempo;
         }
 
-        public List<PeriodoDeTiempo> GetNonIntersectedUnion()
+        public PeriodoDeTiempo[] GetNonIntersectedUnion()
         {
-            List<PeriodoDeTiempo> periodosDeTiempoQueNoInterceptan = new List<PeriodoDeTiempo>();
+           PeriodoDeTiempo[] arrayDeTiemposQueNoInterceptan = new PeriodoDeTiempo[10];
             
             for (var i = 0; i < periodosDeTiempo.Length; i++)
             {
                 if (!periodosDeTiempo[i].interceptaOtroPeriodoDeTiempo)
                 {
-                    periodosDeTiempoQueNoInterceptan.Add(periodosDeTiempo[i]);
+                    arrayDeTiemposQueNoInterceptan[i] = periodosDeTiempo[i];
                 }
             }
 
-            return periodosDeTiempoQueNoInterceptan;
+            return arrayDeTiemposQueNoInterceptan;
         }
 
         public DateTime GetUnion()
