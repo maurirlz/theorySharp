@@ -20,7 +20,6 @@ namespace Parcial
             PeriodoDeTiempo[] periodos = {p, p1};
             
             UnionDeTiempo unionDeTiempo = new UnionDeTiempo(periodos);
-            unionDeTiempo.InterceptaOtroPeriodoDeTiempoCheck();
             
             int i = 0;
             
@@ -34,8 +33,6 @@ namespace Parcial
 
                 i++;
             }
-            
-             // funciona, actually no me fue tan mal
         }
     }
     
@@ -46,6 +43,11 @@ namespace Parcial
         private TimeSpan _duracion;
 
         public bool interceptaOtroPeriodoDeTiempo { get; set; }
+        public void SetInicio(DateTime dt) => _inicio = dt;
+
+        public void SetFin(DateTime dt) => _fin = dt;
+        
+        public void SetDuracion(TimeSpan timeSpan) => _duracion = timeSpan;
         
         public PeriodoDeTiempo(DateTime inicio, DateTime fin, TimeSpan duracion)
         {
@@ -58,6 +60,11 @@ namespace Parcial
 
         public DateTime Fin => _fin;
         public TimeSpan Duracion => _duracion;
+        
+        // Sobreescribimos equals y hashcode() para poder comparar entre periodos de tiempo y ver si son iguales.
+        // (equals por defecto solo compara la referencia de un objeto con la de otro, pero esto no significa que
+        // sean iguales, sobreescribir equals y hashcode nos asegura que 2 periodos de tiempo solo son iguales 
+        // si tienen los valores de sus fields/campos, y son de la misma istancia.
 
         protected bool Equals(PeriodoDeTiempo other)
         {
@@ -90,37 +97,74 @@ namespace Parcial
             this.periodosDeTiempo = periodosDeTiempo;
         }
 
-        public List<PeriodoDeTiempo> GetNonIntersectedUnion()
+        public PeriodoDeTiempo[] GetNonIntersectedUnion()
         {
-            List<PeriodoDeTiempo> periodosDeTiempoQueNoInterceptan = new List<PeriodoDeTiempo>();
+            PeriodoDeTiempo[] arrayDeTiemposQueNoInterceptan = new PeriodoDeTiempo[10];
             
+            InterceptaOtroPeriodoDeTiempoCheck();
+
             for (var i = 0; i < periodosDeTiempo.Length; i++)
             {
                 if (!periodosDeTiempo[i].interceptaOtroPeriodoDeTiempo)
                 {
-                    periodosDeTiempoQueNoInterceptan.Add(periodosDeTiempo[i]);
+                    arrayDeTiemposQueNoInterceptan[i] = periodosDeTiempo[i];
                 }
             }
 
-            return periodosDeTiempoQueNoInterceptan;
+            return arrayDeTiemposQueNoInterceptan;
         }
 
-        public DateTime GetUnion()
+        /*Explicacion: la union de 2 periodos de tiempo es conseguir el la fecha de inicio mas chica y la mecha de fin mas grande entre un conjunto de periodos.
+        ej: periodo 1: 26/05/2020 a 28/05/2020
+        periodo 2: 27/05/2020 a 29/05/2020
+        la union de esos peridoso seria una fechas que contenga a ambos, en este caso, 26/05/2020 a 29/05/2020.
+        
+        creamos un nuevo periodo de tiempo, con inicio como el valor maximo y fin como valor minimo de datetime (explicacion de esto mas adelante.)
+        recorremos el arreglo y chequeamos siempre si hay una interseccion entre las fechas que estamos comparando llamando al metodo de check,
+        si no hay interseccion, es un periodo de tiempo completo por si mismo, el cual no nos interesa sacar porque no sera parte de la union.
+        Aca, se explica la parte de porque pusimos a inicio como valor maximo de una fecha y fin como valor minimo de una fecha:
+        Como sabemos que inicio siempre va a ser el MENOR valor de los inicios de todas las fechas en el array, necesitamos comparar el primer item
+        de dicha lista con algo, ya q si no seteamos este valor, no se podra realizar la primera comparacion, asique si o si necesitamos un valor 
+        ademas de esto, el array fuera de nuestro conocimiento, puede tener cualquier periodo de tiempo desde 01/01/0001 hasta la fecha maxima, 
+        por lo cual si empezamos la comparacion con el valor MAXIMO posible para inicio, sabemos que todo lo que haya en el array sera menor que el valor maximo
+        , asegurandonos asi, que podemos comaprar correctamente todos los elementos del array.
+        
+        Ej: si queremos chequear el elemento minimo de un array de enteros, [1,-50,2,3,4,5], nuestro comaprador agarrar el valor maximo de enteros (2^32) y sera comparado
+        con el 1, si esto es verdadero (lo cual es), asignamos a 1 como nuestro nuevo comparador, y asi con todo el array.
+        La logica del comparador con fin es la misma pero al revez, necesitamos el valor mas chico para iniciarlo como comparador, asegurandonos de que todos los elementos de array 
+        sean mas chicos q este.
+        
+        Una vez recorrimos el array entero ya sacando los valores inicio y fin minimos y maximos, conseguimos la duracion de este periodo y lo devolvemos como un periodo de tiempo.
+        Para los periodos que no tienen una interseccion con otro dentro del array esta el otro metodo, el cual solo devuelve un array de estos periodos, haciendo un check de si se 
+        interseccionan o no. Completando asi, el punto que pide el profesor (dar la union de los que se intersectan y los periodos que no se intersectan.)
+        */
+        public PeriodoDeTiempo GetUnion()
         {
-            DateTime union;
-            long ticksAcum = 0;
             
-            for (var i = 0; i < periodosDeTiempo.Length; i++)
+            PeriodoDeTiempo unionDePeriodosDeTiempo = new PeriodoDeTiempo(DateTime.MaxValue,  DateTime.MinValue, DateTime.MaxValue - DateTime.MinValue);
+
+            InterceptaOtroPeriodoDeTiempoCheck();
+            
+            foreach (PeriodoDeTiempo periodoDeTiempo in periodosDeTiempo)
             {
-                if (periodosDeTiempo[i].interceptaOtroPeriodoDeTiempo)
+                if (periodoDeTiempo.interceptaOtroPeriodoDeTiempo)
                 {
-                    ticksAcum += periodosDeTiempo[i].Inicio.Ticks + periodosDeTiempo[i].Fin.Ticks;
+                    if (periodoDeTiempo.Inicio < unionDePeriodosDeTiempo.Inicio)
+                    {
+                        unionDePeriodosDeTiempo.SetInicio(periodoDeTiempo.Inicio);
+                    }
+
+                    if (periodoDeTiempo.Fin > unionDePeriodosDeTiempo.Fin)
+                    {
+
+                        unionDePeriodosDeTiempo.SetFin(periodoDeTiempo.Fin);
+                    }
                 }
             }
-            
-            union = new DateTime(ticksAcum);
-            
-            return union;
+
+            unionDePeriodosDeTiempo.SetDuracion(unionDePeriodosDeTiempo.Fin - unionDePeriodosDeTiempo.Inicio);
+
+            return unionDePeriodosDeTiempo;
         }
 
         public TimeSpan CalcularSumatoriaTiempos()
