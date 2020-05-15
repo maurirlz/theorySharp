@@ -118,7 +118,7 @@ namespace Parcial
             return arrayDeTiemposQueNoInterceptan;
         }
 
-        /*Explicacion: la union de 2 periodos de tiempo es conseguir el la fecha de inicio mas chica y la mecha de fin mas grande entre un conjunto de periodos.
+        /*Explicacion: la union de 2 periodos de tiempo es conseguir la fecha de inicio mas chica y la fecha de fin mas grande entre un conjunto de periodos.
         ej: periodo 1: 26/05/2020 a 28/05/2020
         periodo 2: 27/05/2020 a 29/05/2020
         la union de esos peridoso seria una fechas que contenga a ambos, en este caso, 26/05/2020 a 29/05/2020.
@@ -134,7 +134,7 @@ namespace Parcial
         , asegurandonos asi, que podemos comaprar correctamente todos los elementos del array.
         
         Ej: si queremos chequear el elemento minimo de un array de enteros, [1,-50,2,3,4,5], nuestro comaprador agarrar el valor maximo de enteros (2^32) y sera comparado
-        con el 1, si esto es verdadero (lo cual es), asignamos a 1 como nuestro nuevo comparador, y asi con todo el array.
+        con el 1, si esto es verdadero (lo cual es), asignamos a 1 como nuestro nuevo comparador, y asi el 1 se compara con el resto del array.
         La logica del comparador con fin es la misma pero al revez, necesitamos el valor mas chico para iniciarlo como comparador, asegurandonos de que todos los elementos de array 
         sean mas chicos q este.
         
