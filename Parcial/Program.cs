@@ -99,11 +99,8 @@ namespace Parcial
 
         public PeriodoDeTiempo[] GetNonIntersectedUnion()
         {
-<<<<<<< HEAD
+            
             PeriodoDeTiempo[] arrayDeTiemposQueNoInterceptan = new PeriodoDeTiempo[10];
-=======
-           PeriodoDeTiempo[] arrayDeTiemposQueNoInterceptan = new PeriodoDeTiempo[10];
->>>>>>> d84332bca0a0babae21e8a2b2e58b0ce13ba4eb0
             
             InterceptaOtroPeriodoDeTiempoCheck();
 
