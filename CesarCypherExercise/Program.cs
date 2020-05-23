@@ -9,6 +9,7 @@ namespace CesarCypherExercise
         static void Main(string[] args)
         {
             /*
+             
             Utilizando el tipo string y/o char elabore un programa de consola que descifre un texto cifrado según el algoritmo César.
             Consideraciones:
 
@@ -18,9 +19,8 @@ namespace CesarCypherExercise
                 Todos los demás aparecerán sin cifrar
 ‌
                 Como prueba el texto que deben descifrar es
-                fcyb ry pbabpüzüragb ehr yyruñ qrfqr qragéb rf ry jréqñqréb pbabpüzüragb
+                fcyb ry pbabpüzüragb ehr yyruñ qrfqr qragéb rf ry jréqñqréb pbabpüzüragb 17
            ‌ */
-
             string menu = BuildMenu();
 
             while (true)
@@ -30,13 +30,13 @@ namespace CesarCypherExercise
 
                 if (input.Key.Equals(ConsoleKey.D3))
                 {
-
                     break;
                 }
 
                 Console.WriteLine("Enter the desired text to cypher: ");
                 string desiredText = Console.ReadLine()?.ToLower();
-                Console.WriteLine("Input the desired amount of shift that this text has / you want to have on the text.");
+                
+                Console.WriteLine("Input the desired amount of shift that this text has / you want to have on the text:");
                 int key = Int32.Parse(Console.ReadLine() ?? "0");
 
                 Console.WriteLine(MenuActions(input, desiredText, key));
@@ -95,10 +95,9 @@ namespace CesarCypherExercise
             key %= alphabet.Length;
             StringBuilder sb = new StringBuilder();
 
-            foreach (var character in s)
+            foreach (char character in s)
             {
                 int unshiftedCharNumber = UnshiftCharNumber(character, alphabet, key);
-                
                 
                 sb.Append(alphabetArray[unshiftedCharNumber % alphabet.Length]);
             }

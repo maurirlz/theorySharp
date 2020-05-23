@@ -127,6 +127,21 @@
           <e p="DateTime" t="Include" />
         </e>
         <e p="Clase 8" t="Include" />
+        <e p="Clase 9" t="Include" />
+      </e>
+      <e p="Interfaces" t="IncludeRecursive">
+        <e p="IColeccionable.cs" t="Include" />
+        <e p="Interfaces.csproj" t="IncludeRecursive" />
+        <e p="Libro.cs" t="Include" />
+        <e p="Program.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Interfaces.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
       </e>
       <e p="Leaked" t="Include" />
       <e p="Parcial" t="IncludeRecursive">
