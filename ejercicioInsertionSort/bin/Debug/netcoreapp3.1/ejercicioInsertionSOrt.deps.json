@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "ejercicioInsertionSOrt/1.0.0": {
+      "ejercicioInsertionSort/1.0.0": {
         "runtime": {
-          "ejercicioInsertionSOrt.dll": {}
+          "ejercicioInsertionSort.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "ejercicioInsertionSOrt/1.0.0": {
+    "ejercicioInsertionSort/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
