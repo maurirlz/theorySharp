@@ -51,8 +51,8 @@
             this.equalsSignBtn = new System.Windows.Forms.Button();
             this.dotBtn = new System.Windows.Forms.Button();
             this.zeroBtn = new System.Windows.Forms.Button();
-            this.plusOrMinusSign = new System.Windows.Forms.Button();
             this.box_Content = new System.Windows.Forms.TextBox();
+            this.lblCurrentOperation = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // sixBtn
@@ -193,6 +193,7 @@
             this.clearBtn.TabIndex = 32;
             this.clearBtn.Text = "C";
             this.clearBtn.UseVisualStyleBackColor = true;
+            this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
             // 
             // clearEntryBtn
             // 
@@ -203,6 +204,7 @@
             this.clearEntryBtn.TabIndex = 31;
             this.clearEntryBtn.Text = "CE";
             this.clearEntryBtn.UseVisualStyleBackColor = true;
+            this.clearEntryBtn.Click += new System.EventHandler(this.clearEntryBtn_Click);
             // 
             // moduloSignBtn
             // 
@@ -213,6 +215,7 @@
             this.moduloSignBtn.TabIndex = 30;
             this.moduloSignBtn.Text = "%";
             this.moduloSignBtn.UseVisualStyleBackColor = true;
+            this.moduloSignBtn.Click += new System.EventHandler(this.operator_Click);
             // 
             // deleteBtn
             // 
@@ -223,6 +226,7 @@
             this.deleteBtn.TabIndex = 35;
             this.deleteBtn.Text = "DEL";
             this.deleteBtn.UseVisualStyleBackColor = true;
+            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
             // divisionSignBtn
             // 
@@ -231,8 +235,9 @@
             this.divisionSignBtn.Name = "divisionSignBtn";
             this.divisionSignBtn.Size = new System.Drawing.Size(80, 26);
             this.divisionSignBtn.TabIndex = 34;
-            this.divisionSignBtn.Text = "÷";
+            this.divisionSignBtn.Text = "/";
             this.divisionSignBtn.UseVisualStyleBackColor = true;
+            this.divisionSignBtn.Click += new System.EventHandler(this.operator_Click);
             // 
             // productSignBtn
             // 
@@ -241,8 +246,9 @@
             this.productSignBtn.Name = "productSignBtn";
             this.productSignBtn.Size = new System.Drawing.Size(80, 26);
             this.productSignBtn.TabIndex = 33;
-            this.productSignBtn.Text = "x";
+            this.productSignBtn.Text = "*";
             this.productSignBtn.UseVisualStyleBackColor = true;
+            this.productSignBtn.Click += new System.EventHandler(this.operator_Click);
             // 
             // minusSignBtn
             // 
@@ -253,6 +259,7 @@
             this.minusSignBtn.TabIndex = 38;
             this.minusSignBtn.Text = "-";
             this.minusSignBtn.UseVisualStyleBackColor = true;
+            this.minusSignBtn.Click += new System.EventHandler(this.operator_Click);
             // 
             // plusSign
             // 
@@ -263,6 +270,7 @@
             this.plusSign.TabIndex = 37;
             this.plusSign.Text = "+";
             this.plusSign.UseVisualStyleBackColor = true;
+            this.plusSign.Click += new System.EventHandler(this.operator_Click);
             // 
             // equalsSignBtn
             // 
@@ -273,6 +281,7 @@
             this.equalsSignBtn.TabIndex = 36;
             this.equalsSignBtn.Text = "=";
             this.equalsSignBtn.UseVisualStyleBackColor = true;
+            this.equalsSignBtn.Click += new System.EventHandler(this.equalsSignBtn_Click);
             // 
             // dotBtn
             // 
@@ -288,45 +297,45 @@
             // zeroBtn
             // 
             this.zeroBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.zeroBtn.Location = new System.Drawing.Point(113, 330);
+            this.zeroBtn.Location = new System.Drawing.Point(12, 330);
             this.zeroBtn.Name = "zeroBtn";
-            this.zeroBtn.Size = new System.Drawing.Size(80, 26);
+            this.zeroBtn.Size = new System.Drawing.Size(181, 26);
             this.zeroBtn.TabIndex = 40;
             this.zeroBtn.Text = "0";
             this.zeroBtn.UseVisualStyleBackColor = true;
             this.zeroBtn.Click += new System.EventHandler(this.button_click);
             // 
-            // plusOrMinusSign
-            // 
-            this.plusOrMinusSign.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.plusOrMinusSign.Location = new System.Drawing.Point(12, 330);
-            this.plusOrMinusSign.Name = "plusOrMinusSign";
-            this.plusOrMinusSign.Size = new System.Drawing.Size(80, 26);
-            this.plusOrMinusSign.TabIndex = 39;
-            this.plusOrMinusSign.Text = "+/-";
-            this.plusOrMinusSign.UseVisualStyleBackColor = true;
-            // 
             // box_Content
             // 
             this.box_Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 29F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.box_Content.Location = new System.Drawing.Point(12, 26);
+            this.box_Content.Location = new System.Drawing.Point(12, 31);
             this.box_Content.Multiline = true;
             this.box_Content.Name = "box_Content";
-            this.box_Content.Size = new System.Drawing.Size(380, 52);
+            this.box_Content.Size = new System.Drawing.Size(380, 47);
             this.box_Content.TabIndex = 42;
             this.box_Content.Text = "0";
             this.box_Content.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblCurrentOperation
+            // 
+            this.lblCurrentOperation.AutoSize = true;
+            this.lblCurrentOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.lblCurrentOperation.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblCurrentOperation.Location = new System.Drawing.Point(22, 4);
+            this.lblCurrentOperation.Name = "lblCurrentOperation";
+            this.lblCurrentOperation.Size = new System.Drawing.Size(0, 24);
+            this.lblCurrentOperation.TabIndex = 43;
             // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DarkSalmon;
+            this.BackColor = System.Drawing.Color.FloralWhite;
             this.ClientSize = new System.Drawing.Size(403, 375);
+            this.Controls.Add(this.lblCurrentOperation);
             this.Controls.Add(this.box_Content);
             this.Controls.Add(this.dotBtn);
             this.Controls.Add(this.zeroBtn);
-            this.Controls.Add(this.plusOrMinusSign);
             this.Controls.Add(this.minusSignBtn);
             this.Controls.Add(this.plusSign);
             this.Controls.Add(this.equalsSignBtn);
@@ -352,8 +361,7 @@
             this.MaximizeBox = false;
             this.Name = "mainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Calculadora Mauricio Ezequiel Benitez, Frias Lucas, Garavaglia Mauricio, Bruzzo F" +
-    "ernando";
+            this.Text = "Calculadora Grupo 8 - Programacion III -  TUP 2020";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -384,8 +392,8 @@
         private System.Windows.Forms.Button equalsSignBtn;
         private System.Windows.Forms.Button dotBtn;
         private System.Windows.Forms.Button zeroBtn;
-        private System.Windows.Forms.Button plusOrMinusSign;
         private System.Windows.Forms.TextBox box_Content;
+        private System.Windows.Forms.Label lblCurrentOperation;
     }
 }
 
